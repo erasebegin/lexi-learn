@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import WordInput from "./components/WordInput";
-import WordCard from "./components/WordCard";
+import CardList from "./components/CardList";
+
 import axios from "axios";
 
 const App = () => {
+
   const [currentWords, setCurrentWords] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [enteredWord, setEnteredWord] = useState("");
@@ -14,6 +16,7 @@ const App = () => {
   const callApi = word => {
     setEnteredWord(word);
     setIsLoading(true);
+    setWordId(prevId => prevId + 1);
     axios({
       method: "GET",
       url:
@@ -34,24 +37,27 @@ const App = () => {
       .then(response => {
         setIsLoading(false);
         setDefinition(response.data.responseData.translatedText);
-        setWordId(prevId => prevId + 1);
       })
       .catch(error => {
         console.log(error);
+        setIsLoading(false);
+        setDefinition("enter definition");
       });
   };
 
   useEffect(() => {
+
     setCurrentWords(prevWords => [
       ...prevWords,
       { id: wordId, word: enteredWord, definition: definition }
     ]);
-  }, [definition]);
+    console.log("useEffect")
+  }, [enteredWord]);
 
-  const handleUpdateDef = (word) => {
-    setDefinition(word)
-    console.log("triggered handleUpdateDef")
-  }
+  // const handleUpdateDef = (word) => {
+  //   setDefinition(word)
+  //   console.log("triggered handleUpdateDef")
+  // }
 
   return (
     <AppContainer>
@@ -60,21 +66,7 @@ const App = () => {
       </header>
       <WordInput onSubmit={callApi} />
       {isLoading ? <h3>loading...</h3> : <h3>&nbsp;</h3>}
-      <CardGrid>
-        {enteredWord ? (
-          currentWords.map(i => (
-            <WordCard
-              key={i.id}
-              id={i.id + 1}
-              word={i.word}
-              definition={i.definition}
-              updateDef={handleUpdateDef}
-            />
-          ))
-        ) : (
-          <div> </div>
-        )}
-      </CardGrid>
+      <CardList currentWords={currentWords}/>
     </AppContainer>
   );
 };
@@ -89,11 +81,6 @@ const AppContainer = styled.div`
   background: rgb(255, 249, 195);
   font-family: "Oswald", Helvetica, Arial, sans-serif;
   border-radius: 5px;
-`;
-
-const CardGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
 `;
 
 export default App;
