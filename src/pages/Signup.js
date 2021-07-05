@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Button from '../styles/Button';
 import Card from '../styles/Card';
 import Page from '../styles/Page';
+import Link from '../styles/Link';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Signup() {

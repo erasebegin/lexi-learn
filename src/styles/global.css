@@ -123,6 +123,9 @@ body {
   --yellow400: #fff6a4;
   --yellow300: #fff9c3;
   --yellow100: #fffef7;
+  --brown500: #292015;
+  --brown100: #d17300;
+  color: var(--brown500);
   line-height: 1;
   margin: 0;
   background: var(--yellow100) !important;
