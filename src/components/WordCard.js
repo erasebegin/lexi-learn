@@ -4,8 +4,10 @@ import styled from 'styled-components';
 
 // COMPONENT
 
-const WordCard = (props) => {
+const WordCard = ({ word, translations }) => {
   const [defClicked, setDefClicked] = useState(false);
+  const [defValue, setDefValue] = useState(translations);
+  console.log({translations})
 
   const handleDefClick = () => {
     setDefClicked(true);
@@ -13,23 +15,16 @@ const WordCard = (props) => {
   };
 
   const handleDefSubmit = (input) => {
-    props.updateDef(input.target.value);
     setDefClicked(false);
     console.log('changedDef: ', input.target.value);
   };
 
   return (
-    <Card>
-      <p>{props.id}</p>
-      <h1>{props.word}</h1>
+    <Card className="my-1 p-3">
+      <h1>{word}</h1>
       <div onClick={handleDefClick}>
-        {defClicked ? (
-          <form>
-            <input onSubmit={handleDefSubmit} />
-          </form>
-        ) : (
-          props.definition
-        )}
+        {translations &&
+          translations.map((translation) => <p>{translation}</p>)}
       </div>
     </Card>
   );

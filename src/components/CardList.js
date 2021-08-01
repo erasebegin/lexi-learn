@@ -1,27 +1,33 @@
 import React from "react";
 import WordCard from "./WordCard";
 import styled from "styled-components";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-const CardList = props => {
+const CardList = ({currentWords}) => {
   return (
     <ListContainer>
-      {props.currentWords.map(i => (
-        <WordCard
-          key={i.id}
-          id={i.id + 1}
-          word={i.word}
-          definition={i.definition}
-        />
-      ))}
+      <Row>
+        {currentWords.map(card => (
+          <Col md={4}>
+            <WordCard
+              key={card.id}
+              id={card.id + 1}
+              word={card.word}
+              translations={card.translations}
+            />
+          </Col>
+        ))}
+      </Row>
     </ListContainer>
   );
 };
 
 // S
 
-const ListContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
+const ListContainer = styled(Container)`
+
 `;
 
 export default CardList;

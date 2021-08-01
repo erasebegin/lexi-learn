@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from '../styles/Button';
 import Alert from 'react-bootstrap/Alert';
 import Card from '../styles/Card';
-import Page from '../styles/Page';
+import Page from '../components/Page';
 import Link from '../styles/Link';
 import { useAuth } from '../contexts/AuthContext';
 

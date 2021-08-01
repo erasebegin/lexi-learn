@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import Button from '../styles/Button';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -40,15 +40,13 @@ const HeaderContainer = styled(Container)`
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;
+  background: var(--yellow300);
   border-bottom: 1px solid var(--yellow500);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   p {
     margin-right: 1rem;
     margin-bottom: 0;
-  }
-
-  button {
-    background: var(--yellow400);
-    border: 1px solid var(--yellow500);
   }
 `;

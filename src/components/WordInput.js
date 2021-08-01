@@ -1,24 +1,30 @@
 import React, {useState} from "react";
+import styled from 'styled-components';
+import Button from '../styles/Button';
+import {ImEye} from 'react-icons/im'
 
-const WordInput = props => {
 
-  const [enteredWord, setEnteredWord] = useState("");
+const WordInput = ({setEnteredWord}) => {
+
+  const [word, setWord] = useState("");
 
   const handleInput = event => {
-    setEnteredWord(event.target.value)
+    setWord(event.target.value)
   };
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    props.onSubmit(enteredWord)
-  }
-
   return (
-  <div>
-    <input onChange={handleInput} value={enteredWord} />
-    <button onClick={handleClick}>ADD</button>
-  </div>
+  <InputContainer>
+    <input onChange={handleInput} value={word} />
+    <Button onClick={()=>setEnteredWord(word)}><ImEye /></Button>
+  </InputContainer>
   );
 };
+
+const InputContainer = styled.div`
+  padding: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
 export default WordInput;
