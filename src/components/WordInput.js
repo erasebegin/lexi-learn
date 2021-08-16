@@ -1,26 +1,47 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../styles/Button';
-import {ImEye} from 'react-icons/im'
+import { ImEye } from 'react-icons/im';
 
+const WordInput = ({ setEnteredWord }) => {
+  const [word, setWord] = useState('');
 
-const WordInput = ({setEnteredWord}) => {
+  function handleChange(event) {
+    setWord(event.target.value);
+  }
 
-  const [word, setWord] = useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
+    setEnteredWord(word);
+    setWord('')
+  }
 
-  const handleInput = event => {
-    setWord(event.target.value)
-  };
+  // function handleKeyDown(event) {
+  //   console.log(event.keyCode);
+  //   if (event.keyCode === 13) {
+  //     handleClick()
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   document.addEventListener('keydown', handleKeyDown, false);
+
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown, false);
+  //   };
+  // }, []);
 
   return (
-  <InputContainer>
-    <input onChange={handleInput} value={word} />
-    <Button onClick={()=>setEnteredWord(word)}><ImEye /></Button>
-  </InputContainer>
+    <InputContainer onSubmit={(e) => handleSubmit(e)}>
+      <input onChange={(e) => handleChange(e)} value={word} />
+      <Button type="submit">
+        <ImEye />
+      </Button>
+    </InputContainer>
   );
 };
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   padding: 3rem;
   width: 100%;
   display: flex;

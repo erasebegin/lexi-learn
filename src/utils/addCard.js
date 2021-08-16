@@ -1,8 +1,7 @@
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-export default async function addCard(event, enteredWord, translations) {
-  event.preventDefault();
+export default async function addCard(enteredWord, translations) {
   try {
     let wordList = [];
     translations.forEach((trans) => wordList.push(trans.l2_text));
