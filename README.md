@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a work in progress. It is a tool to help in the memorisation of lexis
 
 ## Available Scripts
 
